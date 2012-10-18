@@ -20,6 +20,8 @@ Quick Usage:
 
 - remove_value - remove value and index stored in JSON object
 
+![My image](https://raw.github.com/tantau-horia/jquery-SuperCookie/master/example/screen.png)
+
 ## Getting Started
 
 Download the [minified version][min] or the [development version][max].
