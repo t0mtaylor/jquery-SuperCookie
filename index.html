@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Jquery-supercookie by tantau-horia</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Jquery-supercookie</h1>
+        <p>A simple, jQuery plugin for reading, writing and deleting JSON values in cookies.</p>
+
+        <p class="view"><a href="https://github.com/tantau-horia/jquery-SuperCookie">View the Project on GitHub <small>tantau-horia/jquery-SuperCookie</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/tantau-horia/jquery-SuperCookie/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/tantau-horia/jquery-SuperCookie/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/tantau-horia/jquery-SuperCookie">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>jQuery-SuperCookie</h1>
+
+<p>A simple, jQuery plugin for reading, writing and deleting JSON values stored in cookies.</p>
+
+<p>Quick Usage:</p>
+
+<ul>
+<li><p>create - create cookie</p></li>
+<li><p>check - check existance</p></li>
+<li><p>verify - verify cookie value if JSON</p></li>
+<li><p>read_values - read cookie value as string</p></li>
+<li><p>read_JSON - read cookie value as JSON object</p></li>
+<li><p>read_value - read value of index stored in JSON object</p></li>
+<li><p>replace_value - replace value from a specified index stored in JSON object</p></li>
+<li><p>remove_value - remove value and index stored in JSON object</p></li>
+</ul><h2>Getting Started</h2>
+
+<p>Download the <a href="https://raw.github.com/tantau-horia/jquery-SuperCookie/master/jquery.SuperCookie.min.js">minified version</a> or the <a href="https://raw.github.com/tantau-horia/jquery-SuperCookie/master/jquery.SuperCookie.js">development version</a>.</p>
+
+<h3>Installation</h3>
+
+<pre><code>&lt;script src="/path/to/lib/jquery-min.1.8.2.js"&gt;&lt;/script&gt;
+&lt;script src="/path/to/lib/jquery.cookie.js"&gt;&lt;/script&gt;
+&lt;script src="/path/to/lib/json3.min.js"&gt;&lt;/script&gt;
+&lt;script src="/path/to/jquery.SuperCookie.min.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<h3>Dependencies</h3>
+
+<ol>
+<li><p><a href="https://github.com/carhartl/jquery-cookie">jquey.cookie</a> - by Klaus Hartl</p></li>
+<li><p><a href="https://github.com/bestiejs/json3">json3</a> - by Kit Cambridge</p></li>
+</ol><h2>Usage</h2>
+
+<h3>Create Cookie</h3>
+
+<pre><code>// cookie name: name_of_the_cookie
+// cookie values: {name_field_1:"value1",name_field_2:"value2",name_field_3:"value3"}
+$.super_cookie().create("name_of_the_cookie",{name_field_1:"value1",name_field_2:"value2"});
+</code></pre>
+
+<h3>Set Cookie Options</h3>
+
+<p>See <a href="https://github.com/carhartl/jquery-cookie#cookie-options">jquey.cookie</a> official page for more options.</p>
+
+<pre><code>// cookie options: {expires: 7,path: "/"}
+$.super_cookie({expires: 7,path: "/"}).create("name_of_the_cookie",{name_field_1:"value1",name_field_2:"value2"});
+</code></pre>
+
+<h3>Check if cookie exists</h3>
+
+<pre><code>// console.log($.super_cookie().check("name_of_the_cookie"));
+$.super_cookie().check("name_of_the_cookie");
+</code></pre>
+
+<h3>Check if cookie value is a valid JSON</h3>
+
+<pre><code>// console.log($.super_cookie().verify("name_of_the_cookie"));
+$.super_cookie().verify("name_of_the_cookie");
+</code></pre>
+
+<h3>Read cookie values as string</h3>
+
+<pre><code>// console.log($.super_cookie().read_values("name_of_the_cookie"));
+$.super_cookie().read_values("name_of_the_cookie");
+</code></pre>
+
+<h3>Read cookie values as JSON object</h3>
+
+<pre><code>// console.log($.super_cookie().read_JSON("name_of_the_cookie"));
+$.super_cookie().read_JSON("name_of_the_cookie");
+</code></pre>
+
+<h3>Read a single value from the stored JSON</h3>
+
+<pre><code>// $.super_cookie().create("name_of_the_cookie",{name_field_1:"value1",name_field_2:"value2"});
+// console.log($.super_cookie().read_value("name_of_the_cookie","name_field_1"));
+$.super_cookie().read_value("name_of_the_cookie","name_of_the_index");
+</code></pre>
+
+<h3>Replace a value from the stored JSON</h3>
+
+<pre><code>// $.super_cookie().create("name_of_the_cookie",{name_field_1:"value1",name_field_2:"value2"});
+// console.log($.super_cookie().replace_value("name_of_the_cookie","name_field_1","new_value"));
+$.super_cookie().replace_value("name_of_the_cookie","name_of_the_index","new_value");
+</code></pre>
+
+<h3>Add a value to the stored JSON</h3>
+
+<pre><code>// $.super_cookie().create("name_of_the_cookie",{name_field_1:"value1",name_field_2:"value2"});
+// console.log($.super_cookie().add_value("name_of_the_cookie","name_field_3","value3"));
+$.super_cookie().add_value("name_of_the_cookie","name_field_3","value3");
+</code></pre>
+
+<h3>Remove  a value from the stored JSON</h3>
+
+<pre><code>// $.super_cookie().create("name_of_the_cookie",{name_field_1:"value1",name_field_2:"value2"});
+// console.log($.super_cookie().remove_value("name_of_the_cookie","name_field_1"));
+$.super_cookie().remove_value("name_of_the_cookie","name_field_1"));
+</code></pre>
+
+<h2>Development</h2>
+
+<ul>
+<li>Source hosted at <a href="https://github.com/tantau-horia/jquery-SuperCookie">GitHub</a>
+</li>
+<li>Report issues, questions, feature requests on <a href="https://github.com/tantau-horia/jquery-SuperCookie/issues">GitHub Issues</a>
+</li>
+</ul><h2>Authors</h2>
+
+<ul>
+<li><p>jquery.SuperCookie - <a href="https://github.com/tantau-horia/">Tantau Horia</a></p></li>
+<li><p>jquey.cookie - <a href="https://github.com/carhartl/jquery-cookie">Klaus Hartl</a></p></li>
+<li><p>json3 - <a href="https://github.com/bestiejs/json3">Kit Cambridge</a></p></li>
+</ul>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/tantau-horia">tantau-horia</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
