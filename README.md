@@ -8,17 +8,17 @@ Quick Usage:
 
 - check - check existance
 
-- verify - verify cookie JSON
+- verify - verify cookie value if JSON
 
-- read_values - read cookie values as string
+- read_values - read cookie value as string
 
-- read_JSON - read cookie values as JSON object
+- read_JSON - read cookie value as JSON object
 
-- read_value - read cookie value of index stored in JSON object
+- read_value - read value of index stored in JSON object
 
-- replace_value - replace  cookie value from a specified index stored in JSON object
+- replace_value - replace value from a specified index stored in JSON object
 
-- remove_value - remove cookie value and index stored in JSON object`
+- remove_value - remove value and index stored in JSON object
 
 ## Getting Started
 
