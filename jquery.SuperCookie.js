@@ -1,3 +1,13 @@
+/*!
+ * jQuery SuperCookie v1
+ * 
+ * https://github.com/tantau-horia/jquery-SuperCookie
+ *
+ * Copyright 2012, Tantau Horia
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://www.opensource.org/licenses/mit-license.php
+ * http://www.opensource.org/licenses/GPL-2.0
+ */
 ;(function ($, window, document, undefined) {
         //golbal option for jquery.cookie
 	var globalOptions = {
