@@ -87,6 +87,15 @@
 				return $.cookie(name);
 			};
 		},
+		//read all JSON indexes as an array
+		read_indexes: function (name) {
+			var get_mc = $.super_cookie().read_JSON(name);
+			var check = [];
+			$.each( get_mc, function(index,value){
+				check.push( index );
+			});
+			return check;
+		},
 		//read cookie json
 		read_JSON: function (name) {
 			if ( !$.super_cookie().verify(name) ) {
