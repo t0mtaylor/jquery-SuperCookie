@@ -64,6 +64,22 @@
 				return false; 
 			};
 		},
+		//verify index existence
+		check_index: function (name, index_s) {
+			var get_mc = $.super_cookie().read_JSON(name);
+			var check = null;
+			$.each( get_mc, function(index,value){
+				console.log(index+"---"+index_s);
+				if ( index_s === index ) {
+					check = "ok";
+				};
+			});
+			if ( check === null ) {
+				return false;
+			} else {
+				return true;
+			};
+		},
 		//read all cookie values
 		read_values: function (name) {
 			if ( !$.super_cookie().verify(name) ) {

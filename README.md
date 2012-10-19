@@ -10,6 +10,8 @@ Quick Usage:
 
 - verify - verify cookie value if JSON
 
+- check_index - verify if index exists in JSON
+
 - read_values - read cookie value as string
 
 - read_JSON - read cookie value as JSON object
@@ -74,6 +76,11 @@ See [jquey.cookie][cookie_options] official page for more options.
     // console.log($.super_cookie().verify("name_of_the_cookie"));
     $.super_cookie().verify("name_of_the_cookie");
 
+
+### Check if index exists in JSON cookie
+
+    // console.log($.super_cookie().check_index("name_of_the_cookie","value1"));
+    $.super_cookie().check_index("name_of_the_cookie","value1");
 
 ### Read cookie values as string
 
