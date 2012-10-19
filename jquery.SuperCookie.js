@@ -84,13 +84,17 @@
 		//read cookie value from field
 		read_value: function (name, index_s) {
 			var get_mc = $.super_cookie().read_JSON(name);
-			var check = [];
+			var check = null;
 			$.each( get_mc, function(index,value){
 				if ( index_s == index ) {
 					check = value;
 				};
 			});
-			return check;
+			if ( check === null ) {
+				return false;
+			} else {
+				return check;
+			};
 		},
 		//replace cookie value from field
 		replace_value: function (name, index_s, new_value, config) {
