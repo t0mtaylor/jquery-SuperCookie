@@ -38,6 +38,7 @@
 <li><p>create - create cookie</p></li>
 <li><p>check - check existance</p></li>
 <li><p>verify - verify cookie value if JSON</p></li>
+<li><p>check_index - verify if index exists in JSON</p></li>
 <li><p>read_values - read cookie value as string</p></li>
 <li><p>read_JSON - read cookie value as JSON object</p></li>
 <li><p>read_value - read value of index stored in JSON object</p></li>
@@ -89,6 +90,12 @@ $.super_cookie().check("name_of_the_cookie");
 
 <pre><code>// console.log($.super_cookie().verify("name_of_the_cookie"));
 $.super_cookie().verify("name_of_the_cookie");
+</code></pre>
+
+<h3>Check if index exists in JSON cookie</h3>
+
+<pre><code>// console.log($.super_cookie().check_index("name_of_the_cookie","value1"));
+$.super_cookie().check_index("name_of_the_cookie","value1");
 </code></pre>
 
 <h3>Read cookie values as string</h3>
