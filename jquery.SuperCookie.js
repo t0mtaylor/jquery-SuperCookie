@@ -18,6 +18,13 @@
 	$.super_cookie = function (globalConfig) {
 		$.extend(globalOptions, globalConfig);
 		$.extend(this, methods);
+		//IE console fix
+		if (typeof console === "undefined" || typeof console.log === "undefined") {
+			if ( !window.console ) {
+				console = {};
+				console.log = function() {};
+			};
+		};
 		return this;
 	};
 	methods = {
