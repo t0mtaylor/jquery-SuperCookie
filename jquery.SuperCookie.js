@@ -1,5 +1,8 @@
 /*!
- * jQuery SuperCookie v1
+ * jQuery SuperCookie v1.1
+ *
+ *	Removed console guff and optimised code to reduce size further
+ *	Tom Taylor - 19/05/14 - http://tommytaylor.co.uk
  * 
  * https://github.com/tantau-horia/jquery-SuperCookie
  *
@@ -13,173 +16,137 @@
 	var globalOptions = {
 		expires: 7,
 		path: "/"
-	};
-	var methods = {};
-	$.super_cookie = function (globalConfig) {
-		$.extend(globalOptions, globalConfig);
-		$.extend(this, methods);
-		//IE console fix
-		if (typeof console === "undefined" || typeof console.log === "undefined") {
-			if ( !window.console ) {
-				console = {};
-				console.log = function() {};
-			};
-		};
-		return this;
-	};
-	methods = {
+	    },
+	    methods = {
 		//create cookie
 		create: function (name, values, config) {
 			var options = $.extend({}, globalOptions, config);
-			$.cookie( name, JSON.stringify(values), options );
+			$.cookie(name, JSON.stringify(values), options);
 		},
 		//verify if cookie exists
 		check: function (name) {
-			if ( name !== null && name !== undefined ) {
-				var get_mc = $.cookie(name);
-				if ( get_mc === null ) {
-					console.log('No cookie.');
-					return false;
-				};
-				return true;
-			} else {
-				console.log('No cookie selected.');
-				return false; 
-			};
+			return (name !== null && name !== undefined ? ($.cookie(name) === null ? false : true) : false);
 		},
 		//verify cookie json and existence
 		verify: function (name) {
-			if ( name !== null && name !== undefined ) {
+			if (name !== null && name !== undefined) {
 				var get_mc = $.cookie(name);
+				
 				if ( get_mc === null ) {
-					console.log('No cookie.');
 					return false;
 				};
 				if ( jQuery.isEmptyObject(get_mc) ) {
-					console.log('Invalid values.');
 					return false;
 				}
+				
 				try{
 					JSON.parse(get_mc);
 				} catch (e) {
-					console.log('Not JSON.');
 					return false;
 				}
+				
 				return true;
 			} else {
-				console.log('No cookie selected.');
 				return false; 
 			};
 		},
 		//verify index existence
 		check_index: function (name, index_s) {
-			var get_mc = $.super_cookie().read_JSON(name);
-			var check = null;
-			$.each( get_mc, function(index,value){
+			var get_mc = $.super_cookie().read_JSON(name),
+			    check = null;
+			    
+			$.each(get_mc, function(index,value){
 				if ( index_s === index ) {
 					check = "ok";
 				};
 			});
-			if ( check === null ) {
-				return false;
-			} else {
-				return true;
-			};
+			
+			return (check === null ? false : true)
 		},
 		//read all cookie values
 		read_values: function (name) {
-			if ( !$.super_cookie().verify(name) ) {
-				return false;
-			} else {
-				return $.cookie(name);
-			};
+			return (!$.super_cookie().verify(name) ? false : $.cookie(name));
 		},
 		//read all JSON indexes as an array
 		read_indexes: function (name) {
-			var get_mc = $.super_cookie().read_JSON(name);
-			var check = [];
-			$.each( get_mc, function(index,value){
-				check.push( index );
+			var get_mc = $.super_cookie().read_JSON(name),
+			    check = [];
+			    
+			$.each(get_mc, function(index,value){
+				check.push(index);
 			});
+			
 			return check;
 		},
 		//read cookie json
 		read_JSON: function (name) {
-			if ( !$.super_cookie().verify(name) ) {
-				return false;
-			} else {
-				return JSON.parse($.cookie(name));
-			
-			};
+			return (!$.super_cookie().verify(name) ? false : JSON.parse($.cookie(name)));
 		},
 		//read cookie value from field
 		read_value: function (name, index_s) {
-			var get_mc = $.super_cookie().read_JSON(name);
-			var check = null;
-			$.each( get_mc, function(index,value){
-				if ( index_s == index ) {
+			var get_mc = $.super_cookie().read_JSON(name),
+			    check = null;
+			    
+			$.each(get_mc, function(index,value){
+				if (index_s === index) {
 					check = value;
 				};
 			});
-			if ( check === null ) {
-				return false;
-			} else {
-				return check;
-			};
+			
+			return (check === null ? false : check);
 		},
 		//replace cookie value from field
 		replace_value: function (name, index_s, new_value, config) {
-			var get_mc = $.super_cookie().read_JSON(name);
-			var check = [];
-			$.each( get_mc, function(index,value){
-				field = "\"" + index + "\": \"" + value + "\"";
-				if ( index_s === index ) {
-					field = "\"" + index + "\": \"" + new_value + "\"";
-					check.push( field );
-				} else {
-					check.push( field );
-				};
+			var get_mc = $.super_cookie().read_JSON(name),
+			    check = [],ocheck = {},options = $.extend({}, globalOptions, config);
+
+			$.each(get_mc, function(index,value){
+				check.push("\"" + index + "\": \"" + (index_s === index ? new_value : value) + "\"");
 			});
+			
 			check = "{" + check.join(", ") + "}";
-			var ocheck = {};
 			ocheck = JSON.stringify(check);
-			var options = $.extend({}, globalOptions, config);
-			$.removeCookie(name);
-			$.cookie( name, JSON.parse(ocheck), options );
+			
+			$.removeCookie(name).cookie(name, JSON.parse(ocheck), options);
 		},
 		//add cookie field and value
 		add_value: function (name, new_index, new_value, config) {
-			var get_mc = $.super_cookie().read_JSON(name);
-			var check = [];
-			$.each( get_mc, function(index,value){
-				field = "\"" + index + "\": \"" + value + "\"";
-				check.push( field );
+			var get_mc = $.super_cookie().read_JSON(name),
+			    check = [],ocheck = {},options = $.extend({}, globalOptions, config);
+			    
+			$.each(get_mc, function(index,value){
+				check.push("\"" + index + "\": \"" + value + "\"");
 			});
+			
 			check.push("\"" + new_index + "\": \"" + new_value + "\"");
+			
 			check = "{" + check.join(", ") + "}";
-			var ocheck = {};
 			ocheck = JSON.stringify(check);
-			var options = $.extend({}, globalOptions, config);
-			$.removeCookie(name);
-			$.cookie( name, JSON.parse(ocheck), options );
+			
+			$.removeCookie(name).cookie(name, JSON.parse(ocheck), options);
 		},
 		//remove cookie field and value
 		remove_value: function (name, remove_index, config) {
-			var get_mc = $.super_cookie().read_JSON(name);
-			var check = [];
-			$.each( get_mc, function(index,value){
-				field = "\"" + index + "\": \"" + value + "\"";
-				if ( remove_index !== index ) {
-					check.push( field );
+			var get_mc = $.super_cookie().read_JSON(name),
+			    check = [],ocheck = {},options = $.extend({}, globalOptions, config);
+			    
+			$.each(get_mc, function(index,value){
+				if (remove_index !== index) {
+					check.push("\"" + index + "\": \"" + value + "\"");
 				};
 			});
+			
 			check = "{" + check.join(", ") + "}";
-			var ocheck = {};
 			ocheck = JSON.stringify(check);
-			var options = $.extend({}, globalOptions, config);
-			$.removeCookie(name);
-			$.cookie( name, JSON.parse(ocheck), options );
+			
+			$.removeCookie(name).cookie(name, JSON.parse(ocheck), options);
 		}
+	};
+	
+	$.super_cookie = function (globalConfig) {
+		$.extend(globalOptions, globalConfig).extend(this, methods);
+
+		return this;
 	};
 
  })(jQuery, document);
