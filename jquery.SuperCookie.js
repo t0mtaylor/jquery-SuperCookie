@@ -144,7 +144,8 @@
 	};
 	
 	$.super_cookie = function (globalConfig) {
-		$.extend(globalOptions, globalConfig).extend(this, methods);
+		$.extend(globalOptions, globalConfig);
+		$.extend(this, methods);
 
 		return this;
 	};
