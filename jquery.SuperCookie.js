@@ -1,5 +1,5 @@
 /*!
- * jQuery SuperCookie v1.1
+ * jQuery SuperCookie v1.2
  *
  *	Removed console guff and optimised code to reduce size further
  *	Tom Taylor - 19/05/14 - http://tommytaylor.co.uk
