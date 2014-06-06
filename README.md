@@ -1,4 +1,4 @@
-#jQuery-SuperCookie
+#jQuery-SuperCookie v1.2.1 (2014)
 
 A simple, jQuery plugin for reading, writing and deleting JSON values stored in cookies.
 
@@ -24,21 +24,30 @@ Quick Usage:
 
 - remove_value - remove value and index stored in JSON object
 
-![My image](https://raw.github.com/tantau-horia/jquery-SuperCookie/master/example/screen.png)
+![My image](https://raw.github.com/t0mtaylor/jquery-SuperCookie/master/example/screen.png)
 
 ## Getting Started
 
 Download the [minified version][min] or the [development version][max].
 
-[min]: https://raw.github.com/tantau-horia/jquery-SuperCookie/master/jquery.SuperCookie.min.js
-[max]: https://raw.github.com/tantau-horia/jquery-SuperCookie/master/jquery.SuperCookie.js
+[min]: https://raw.github.com/t0mtaylor/jquery-SuperCookie/master/jquery.SuperCookie.min.js
+[max]: https://raw.github.com/t0mtaylor/jquery-SuperCookie/master/jquery.SuperCookie.js
 
 ### Installation
 
+    <script src="/path/to/lib/json3.min.js"></script>
     <script src="/path/to/lib/jquery-min.1.8.2.js"></script>
     <script src="/path/to/lib/jquery.cookie.js"></script>
-    <script src="/path/to/lib/json3.min.js"></script>
     <script src="/path/to/jquery.SuperCookie.min.js"></script>
+
+Use with [jQuery Extended Cookie Plugin](https://github.com/t0mtaylor/jquery-enhanced-cookie) to use seamless cookie chunking and localSorage/sessionStorage (where available)
+
+    <script src="/path/to/lib/json3.min.js"></script>
+    <script src="/path/to/lib/jquery-min.1.8.2.js"></script>
+    <script src="/path/to/lib/jquery.cookie.js"></script>
+    <script src="/path/to/jquery.enhanced.cookie.min.js"></script>
+    <script src="/path/to/jquery.SuperCookie.min.js"></script>
+
 
 ### Dependencies
 
@@ -125,10 +134,6 @@ See [jquey.cookie][cookie_options] official page for more options.
     // console.log($.super_cookie().remove_value("name_of_the_cookie","name_field_1"));
     $.super_cookie().remove_value("name_of_the_cookie","name_field_1"));
 
-## Development
-
-- Source hosted at [GitHub](https://github.com/tantau-horia/jquery-SuperCookie)
-- Report issues, questions, feature requests on [GitHub Issues](https://github.com/tantau-horia/jquery-SuperCookie/issues)
 
 ## Authors
 
