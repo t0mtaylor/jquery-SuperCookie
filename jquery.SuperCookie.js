@@ -1,5 +1,5 @@
 /*!
- * jQuery SuperCookie v1.2
+ * jQuery SuperCookie v1.2.1
  *
  *	Removed console guff and optimised code to reduce size further
  *	Tom Taylor - 19/05/14 - http://tommytaylor.co.uk
@@ -14,8 +14,8 @@
 ;(function ($, window, document, undefined) {
         //golbal option for jquery.cookie
 	var globalOptions = {
-		expires: 7,
-		path: "/"
+			expires: 7,
+			path: "/"
 	    },
 	    methods = {
 		//create cookie
@@ -107,7 +107,8 @@
 			check = "{" + check.join(", ") + "}";
 			ocheck = JSON.stringify(check);
 			
-			$.removeCookie(name).cookie(name, JSON.parse(ocheck), options);
+			$.removeCookie(name);
+			$.cookie(name, JSON.parse(ocheck), options);
 		},
 		//add cookie field and value
 		add_value: function (name, new_index, new_value, config) {
@@ -123,7 +124,8 @@
 			check = "{" + check.join(", ") + "}";
 			ocheck = JSON.stringify(check);
 			
-			$.removeCookie(name).cookie(name, JSON.parse(ocheck), options);
+			$.removeCookie(name);
+			$.cookie(name, JSON.parse(ocheck), options);
 		},
 		//remove cookie field and value
 		remove_value: function (name, remove_index, config) {
@@ -139,7 +141,8 @@
 			check = "{" + check.join(", ") + "}";
 			ocheck = JSON.stringify(check);
 			
-			$.removeCookie(name).cookie(name, JSON.parse(ocheck), options);
+			$.removeCookie(name);
+			$.cookie(name, JSON.parse(ocheck), options);
 		}
 	};
 	
